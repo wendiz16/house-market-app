@@ -1,8 +1,16 @@
 import {useState, useEffect, useRef} from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from 'firebase/storage'
 import { useNavigate } from 'react-router-dom'
+import { db } from '../firebase.config'
 import Spinner from '../components/Spinner'
 import { toast } from 'react-toastify'
+import { v4 as uuidv4 } from 'uuid'
 function CreateListing() {
    // eslint-disable-next-line
   const [geolocationEnabled, setGeolocationEnabled] = useState(true)
@@ -98,6 +106,14 @@ function CreateListing() {
       geolocation.lat = latitude
       geolocation.lng = longitude
       location = address
+    }
+    // Store image in firebase
+    const storeImage = async (image) => {
+      return new Promise((resolve, reject) => {
+        const storage = getStorage()
+        const fileName = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`
+      })
+
     }
 
     setLoading(false)
