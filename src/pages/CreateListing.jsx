@@ -169,7 +169,7 @@ function CreateListing() {
     delete formDataCopy.address
     !formDataCopy.offer && delete formDataCopy.discountedPrice
     const docRef = await addDoc(collection(db, 'listings'), formDataCopy)
-    setLoading(false)
+    setLoading(false) 
     toast.success('Listing saved')
     navigate(`/category/${formDataCopy.type}/${docRef.id}`)
   }
