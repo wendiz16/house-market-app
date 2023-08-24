@@ -49,8 +49,7 @@ function Listing() {
     slidesPerView={1}
     pagination={{ clickable: true }}
     navigation
-    style={{ height: '300px' }}
->
+    scrollbar={{ draggable: true }}>
     {listing.imgUrls.map((url, index) => {
        return (
             <SwiperSlide key={index}>
@@ -59,11 +58,14 @@ function Listing() {
                     style={{
                         background: `url(${listing.imgUrls[index]}) center no-repeat`,
                         backgroundSize: 'cover',
+                        minHeight: '20rem'
                     }}
                 ></div>
             </SwiperSlide>
         );
     })}
+
+     
 </Swiper>
       <div className="shareIconDiv" onClick={()=>{
         navigator.clipboard.writeText(window.location.href)
